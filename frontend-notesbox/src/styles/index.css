@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;700&family=Roboto+Slab:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.gradient-bg {
+    background: linear-gradient(221.47deg, #C7AAF6 14.65%, #FEC672 50.95%, #FE85C5 87.25%);
+}
+
+.sans {
+    font-family: 'Poppins', sans-serif;
+}
+
+.serif {
+    font-family: 'Roboto Slab', serif;
+}
+
+.cursive {
+    font-family: 'Pacifico', cursive;
+}
+
+
+:root {
+    --primary: rgba(167, 110, 255, 1);
+    --primary-light-grad: radial-gradient(22.66% 70.42% at 50.36% 50%, rgba(180, 134, 255, 1) 0%, #AA73FF 100%);
+    --primary-pressed: rgba(104, 42, 200, 1);
+    --secondary: rgba(199, 170, 246, 1);
+    --black: rgba(33, 22, 51, 1);
+    --black-75: rgba(19, 12, 29, 0.75);
+    --black-50: rgba(19, 12, 29, 0.5);
+    --black-25: rgba(19, 12, 29, 0.25);
+    --black-10: rgba(19, 12, 29, 0.1);
+    --black-5: rgba(19, 12, 29, 0.05);
+    --white: rgba(250, 248, 253, 1);
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Roboto Slab', serif;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--black);
+}
+
+h1 {
+    font-size: 40px;
+    line-height: 53px;
+}
+
+.h1-hw {
+    color: var(--black);
+    font-family: 'Pacifico', cursive;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 70px;
+}
+
+h2 {
+    font-size: 33px;
+    line-height: 44px;
+}
+
+h3 {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 37px;
+}
+
+.h3-bold {
+    font-family: 'Roboto Slab', serif;
+    font-style: normal;
+    color: var(--black);
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 37px;
+}
+
+h4 {
+    font-size: 23px;
+    line-height: 30px;
+}
+
+h5 {
+    font-size: 19px;
+    line-height: 25px;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--black-75);
+}
+
+.primary-light {
+    background-color: var(--primary-light);
+}
+
+.primary-pressed {
+    background-color: var(--primary-pressed);
+}
+
+.black-shadow {
+    box-shadow: 5px 5px var(--black);
+    background-clip: padding-box;  
+    -moz-background-clip: padding;  
+    -webkit-background-clip: padding;
+    
+  }
