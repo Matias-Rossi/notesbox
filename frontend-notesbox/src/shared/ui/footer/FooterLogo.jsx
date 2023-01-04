@@ -2,7 +2,7 @@ import React from 'react'
 
 function FooterLogo() {
     const style = {
-        backgroundImage: `url(../src/assets/brand/notesbox-footer-logo.png)`,
+        backgroundImage: `url(../src/assets/images/brand/notesbox-footer-logo.png)`,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         width: "60%",
