@@ -6,13 +6,12 @@ import { NavLink } from "react-router-dom";
 function Footer() {
   const footerStyle = {
     backgroundColor: "#E0E0E0",
-    padding: "2rem 0 "
   };
 
   return (
     <footer>
       <div className="" style={footerStyle}>
-        <div className="flex justify-center gap-5 pb-3">
+        <div className="flex justify-center gap-5 py-8">
           <FooterInfo />
           <Divider />
           <FooterSiteMap />
