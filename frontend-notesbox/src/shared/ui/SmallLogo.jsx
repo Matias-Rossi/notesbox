@@ -2,7 +2,7 @@ import React from 'react'
 
 function SmallLogo() {
     const style = {
-        backgroundImage: `url(../src/assets/images/notesbox_logo.png)`,
+        backgroundImage: `url(assets/images/brand/notesbox_logo.png)`,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         width: "100%",
