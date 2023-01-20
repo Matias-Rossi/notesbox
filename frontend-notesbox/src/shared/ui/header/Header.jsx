@@ -44,7 +44,7 @@ export default Header;
 
 function HeaderNavButton({text, to}) {
   return (
-    <Link to={to} className="sans text-black h-full hover:underline ease-in-out">
+    <Link to={to} className="sans text-black h-full center hover:underline ease-in-out">
       <div className="px-3 py-2">
         {text}
       </div>

@@ -6,39 +6,39 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dds.notesbox.dao.Dao;
-import com.dds.notesbox.models.users.User;
+import com.dds.notesbox.models.products.Melody;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-
-@Repository
 @Transactional
-public class UserRepository implements Dao<User>{
+@Repository
+public class MelodyRepository implements Dao<Melody>{
+
   @PersistenceContext
   private EntityManager em;
 
-
-  public List<User> findAll() {
-    String query = "FROM User";
-    List<User> result = em.createQuery(query, User.class).getResultList();
+  public List<Melody> findAll() {
+    String query = "FROM Melody";
+    List<Melody> result = em.createQuery(query, Melody.class).getResultList();
     return result;
   }
 
-  public User findOne(final Long id) {
-    return em.find(User.class, id);
+  public Melody findOne(final Long id) {
+    return em.find(Melody.class, id);
   }
 
-  public void persist(User entity) {
+  public void persist(Melody entity) {
     em.persist(entity);
   }
  
-  public User update(User entity) {
+  public Melody update(Melody entity) {
     return em.merge(entity);
   }
 
   public void delete(Long id) {
-    User user = em.find(User.class, id);
-    em.remove(user);
+    Melody melody = em.find(Melody.class, id);
+    em.remove(melody);
   }
+
 }

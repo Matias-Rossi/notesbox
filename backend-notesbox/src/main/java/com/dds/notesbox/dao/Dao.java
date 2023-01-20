@@ -9,7 +9,7 @@ public interface Dao<T> {
   
   void delete(Long id);
 
-  T createOrMerge(T entity);
+  void persist(T entity);
 
   T update(T entity);
 }

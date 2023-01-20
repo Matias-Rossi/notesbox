@@ -16,8 +16,8 @@ import lombok.Getter;
 public class Customer extends User {
 
     @Getter
-    @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinColumn(name = "address_id")
+    @OneToOne(cascade = CascadeType.ALL )
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address shippingAddress;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "customer") @Getter
@@ -34,7 +34,8 @@ public class Customer extends User {
         setShippingAddress(shippingAddress);
     }
 
-    private void setShippingAddress(Address shippingAddress) {
+    public void setShippingAddress(Address shippingAddress) {
+        System.out.println("Shipping address assigned");
         shippingAddress.setCustomer(this);
     }
 

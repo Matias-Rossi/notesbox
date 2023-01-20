@@ -1,22 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import musical_box from "~/assets/images/musical_box_1.png";
 import CategoryPicker from "~/shared/ui/shop/CategoryPicker";
 import Category from "~/models/category";
 import MusicalBox from "~/models/musicalBox";
 import MusicalBoxGrid from "~/shared/ui/shop/MusicalBoxGrid";
 import SecondaryButton from "~/shared/ui/input/SecondaryButton";
+import { isEmpty } from "~/shared/utils/utils.js";
+import { config } from "~/shared/data/config";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-    const navigate = useNavigate();
-
-    let homeCategories = [
-        new Category(0, "Seasonal picks"),
-        new Category(1, "Trending"),
-        new Category(2, "Newest"),
-    ];
-    const boxes = [
+    const defBoxes = [
         new MusicalBox(0, "Jingle Bells", "24", undefined, "Festive"),
         new MusicalBox(1, "Last Christmas", "24", undefined, "Festive"),
         new MusicalBox(2, "Muchachos", "29", undefined, "Sports"),
@@ -24,6 +19,50 @@ function Home() {
         new MusicalBox(4, "Titanic", "29", undefined, "Movies"),
         new MusicalBox(5, "Mi Enfermedad", "29", undefined, "Other"),
     ];
+
+    const navigate = useNavigate();
+    const [specialCollectionId, setSpecialCollectionId] = useState("0")
+    const [specialCollections, setSpecialCollections] = useState([{id: 0, name: "Loading..."}])
+    const [melodies, setMelodies] = useState(defBoxes)
+
+    //Fetch products 
+    useEffect(() => {
+        console.log("Fetching collections");
+        fetch(config.backend_url + "/api/products/special-collections")
+          .then((response) => response.json())
+          .then(
+            (data) => {
+                let _specialCollections = []
+                data.forEach(sc => {
+                    _specialCollections.push(sc);
+                });
+                // console.log("Setting special collections");
+                console.log("aaa")
+                setSpecialCollections(_specialCollections);
+                let firstId = _specialCollections[0].id
+                setSpecialCollectionId(firstId)
+                console.log(_specialCollections[firstId]);
+                setMelodies(MusicalBox.listFromSpecialCollection(_specialCollections[firstId]));
+            },
+            (error) => {
+              console.error(error);
+            }
+          );
+      }, []);
+
+    //Update when category is changed
+    useEffect(() => {
+        console.log(!isEmpty(specialCollections))
+        console.log(specialCollections)
+        if(!isEmpty(specialCollections)) {
+            // console.log("Showing products for collection " + specialCollectionId);
+            // console.log("specialCollections[<id>] is ");
+            console.log(specialCollectionId);
+            console.log(specialCollections[specialCollectionId] );
+            setMelodies(MusicalBox.listFromSpecialCollection(specialCollections[specialCollectionId]));
+        }
+      }, [specialCollectionId]);
+
 
     return (
         <main>
@@ -44,11 +83,12 @@ function Home() {
                 </div>
             </div>
             <CategoryPicker
+                onChange={setSpecialCollectionId}
                 className="my-6"
                 showChooseText={false}
-                categories={homeCategories}
+                categories={specialCollections}
             />
-            <MusicalBoxGrid className="my-6" boxes={boxes} />
+            <MusicalBoxGrid className="my-6" boxes={melodies} />
             <div className="flex justify-end my-12 w-1/2">
                 <SecondaryButton
                     text="See the full catalog"

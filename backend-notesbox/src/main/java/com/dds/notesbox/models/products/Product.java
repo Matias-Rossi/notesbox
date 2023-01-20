@@ -8,9 +8,15 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.dds.notesbox.models.PersistentEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 import lombok.Getter;
 
@@ -40,10 +46,16 @@ public class Product extends PersistentEntity {
   @Column
   private double discountPrice;
 
+  //TODO: Add introduction date
+
   @Getter
   @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinColumn(name = "category_id")
   private Category category;
+
+  @Getter
+  @OneToMany(mappedBy = "product")
+  Set<ProductSpecialCollection> specialCollections = new HashSet<ProductSpecialCollection>();
 
   public Product(String name, String description, double price, Category category) {
     this.price = price;
@@ -51,6 +63,7 @@ public class Product extends PersistentEntity {
     this.name = name;
     this.description = description;
     this.category = category;
+    category.addProduct(this);
   }
 
   public Product(String name, String description, double price, double discountPrice, Category category) {
@@ -60,6 +73,7 @@ public class Product extends PersistentEntity {
     this.name = name;
     this.description = description;
     this.category = category;
+    category.addProduct(this);
   }
 
   public void addDiscountPrice(double price) {
@@ -72,6 +86,14 @@ public class Product extends PersistentEntity {
 
   public boolean hasDiscountPrice() {
     return this.hasDiscountPrice;
+  }
+
+  public void addSpecialCollection(ProductSpecialCollection psc) {
+    this.specialCollections.add(psc);
+  }
+
+  public void removeSpecialCollection(ProductSpecialCollection psc) {
+    this.specialCollections.remove(psc);
   }
 
   public Product(){}

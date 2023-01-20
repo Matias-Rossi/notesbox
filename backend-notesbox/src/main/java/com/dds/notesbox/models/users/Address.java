@@ -12,32 +12,33 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table(name = "addresses")
-public class Address extends PersistentEntity{
+public class Address extends PersistentEntity {
 
-  @OneToOne(mappedBy = "shippingAddress") @Setter
+  @OneToOne(mappedBy = "shippingAddress", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}) @Setter @Getter
   Customer customer;
 
   @OneToMany(mappedBy = "shippingAddress")
   List<Order> orders;
 
-  @Column
+  @Column @Getter
   private String street;
-  @Column
+  @Column @Getter
   private String number;
-  @Column
+  @Column @Getter
   private String city;
-  @Column
+  @Column @Getter
   private String province;
-  @Column
+  @Column @Getter
   private String country;
 
-  @Column(nullable = true)
+  @Column(nullable = true) @Getter
   private String floor;
-  @Column(nullable = true)
+  @Column(nullable = true) @Getter
   private String apartment;
 
 

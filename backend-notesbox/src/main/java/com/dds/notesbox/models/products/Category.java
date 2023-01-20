@@ -15,13 +15,14 @@ public class Category extends PersistentEntity {
   @Column @Getter
   private String name;
   
-  @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "category")
+  @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "category") @Getter
   private List<Product> products = new ArrayList<Product>();
 
 
   public Category(String name, List<Product> products) {
     this.name = name;
     this.products = products;
+    //unused?
   }
 
   public Category(String name) {
