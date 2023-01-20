@@ -21,7 +21,7 @@ function Home() {
     ];
 
     const navigate = useNavigate();
-    const [specialCollectionId, setSpecialCollectionId] = useState("0")
+    const [specialCollectionIndex, setSpecialCollectionIndex] = useState(0)
     const [specialCollections, setSpecialCollections] = useState([{id: 0, name: "Loading..."}])
     const [melodies, setMelodies] = useState(defBoxes)
 
@@ -33,16 +33,10 @@ function Home() {
           .then(
             (data) => {
                 let _specialCollections = []
-                data.forEach(sc => {
-                    _specialCollections.push(sc);
-                });
-                // console.log("Setting special collections");
-                console.log("aaa")
+                data.forEach(sc => _specialCollections.push(sc));
                 setSpecialCollections(_specialCollections);
-                let firstId = _specialCollections[0].id
-                setSpecialCollectionId(firstId)
-                console.log(_specialCollections[firstId]);
-                setMelodies(MusicalBox.listFromSpecialCollection(_specialCollections[firstId]));
+                setSpecialCollectionIndex(0);
+                setMelodies(MusicalBox.listFromSpecialCollection(_specialCollections[0]));
             },
             (error) => {
               console.error(error);
@@ -52,16 +46,13 @@ function Home() {
 
     //Update when category is changed
     useEffect(() => {
-        console.log(!isEmpty(specialCollections))
-        console.log(specialCollections)
+        console.log("ccc")
+        console.log(specialCollections);
+        console.log(specialCollectionIndex);
         if(!isEmpty(specialCollections)) {
-            // console.log("Showing products for collection " + specialCollectionId);
-            // console.log("specialCollections[<id>] is ");
-            console.log(specialCollectionId);
-            console.log(specialCollections[specialCollectionId] );
-            setMelodies(MusicalBox.listFromSpecialCollection(specialCollections[specialCollectionId]));
+            setMelodies(MusicalBox.listFromSpecialCollection(specialCollections[specialCollectionIndex]));
         }
-      }, [specialCollectionId]);
+      }, [specialCollectionIndex]);
 
 
     return (
@@ -83,7 +74,7 @@ function Home() {
                 </div>
             </div>
             <CategoryPicker
-                onChange={setSpecialCollectionId}
+                onChange={setSpecialCollectionIndex}
                 className="my-6"
                 showChooseText={false}
                 categories={specialCollections}

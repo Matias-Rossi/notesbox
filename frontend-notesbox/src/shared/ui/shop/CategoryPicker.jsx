@@ -16,12 +16,12 @@ function CategoryPicker({ showChooseText, categories, onChange }) {
             <CategoryButton
               category={c}
               onClick={() => {
-                setCategory(c.id)
-                onChange(c.id)
+                setCategory(i+1)
+                onChange(i)
               }}
               selectedCategory={category}
             />
-            {++i < categoryCount ? <Divider /> : null}
+            {i + 1 < categoryCount ? <Divider /> : null}
           </React.Fragment>
         );
       })}
@@ -32,6 +32,9 @@ function CategoryPicker({ showChooseText, categories, onChange }) {
 export default CategoryPicker;
 
 function CategoryButton({ category, onClick, selectedCategory }) {
+  console.log("SELECTED CATEGORY");
+  console.log(selectedCategory);
+  console.log(category.id);
   let isActive = selectedCategory === category.id;
   return (
     <button
