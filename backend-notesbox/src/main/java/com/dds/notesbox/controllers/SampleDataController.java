@@ -77,9 +77,9 @@ public class SampleDataController {
     Melody amEnde = new Melody("Am Ende", "", 24, sports);
     Melody dangerZone = new Melody("Danger Zone", "", 29, movies);
     Melody takeMyBreathAway = new Melody("Take My Breath Away", "", 29, movies);
-    Melody holdMyHand = new Melody("Hold My Hand", "", 29, movies);
+    Melody holdMyHand = new Melody("Hold My Hand", "", 29, 19, movies);
     Melody frostyTheSnowman = new Melody("Frosty the Snowman", "", 24, festive);
-    Melody christmasWaltz = new Melody("The Christmas Waltz", "", 24, festive);
+    Melody christmasWaltz = new Melody("The Christmas Waltz", "", 24, 19, festive);
     Melody firstNoel = new Melody("The First Noël", "", 24, festive);
     Melody oChristmasTree = new Melody("O Christmas Tree", "", 24, festive);
 

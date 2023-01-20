@@ -7,7 +7,7 @@ function MusicalBoxGrid({boxes, className}) {
   }
 
   return (
-    <div style={style} className={"grid grid-cols-3 gap-x-12 gap-y-14 " + className}>
+    <div style={style} className={"grid grid-cols-3 gap-x-12 gap-y-14 md:grid-cols-2 md:gap-x-8 sm:grid-cols-1 " + className}>
         {boxes.map((b, i) => 
             <MusicalBoxCard box={b} key={i}/>
         )}

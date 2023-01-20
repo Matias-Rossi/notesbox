@@ -34,7 +34,7 @@ function About() {
                             <PrimaryButton
                                 className="px-2"
                                 text="Contact us"
-                                onClick={() => navigate("/contact")}
+                                onClick={() => navigate("/contact-us")}
                             />
                         </div>
                     </div>

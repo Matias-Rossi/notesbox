@@ -22,6 +22,19 @@ module.exports = {
         'gradient-radial': 'radial-gradient(25.66% 75.42% at 50% 50%, #b486ff 0%, #AA73FF 100%)',
       }
     },
+    screens: {
+			xl: { max: "1279px" },
+			// => @media (max-width: 1279px) { ... }
+
+			lg: { max: "1023px" },
+			// => @media (max-width: 1023px) { ... }
+
+			md: { max: "767px" },
+			// => @media (max-width: 767px) { ... }
+
+			sm: { max: "639px" },
+			// => @media (max-width: 639px) { ... }
+		},
   },
   plugins: [],
 }

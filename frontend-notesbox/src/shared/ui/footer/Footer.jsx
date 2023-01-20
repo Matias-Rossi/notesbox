@@ -2,8 +2,11 @@ import React from "react";
 import FooterLogo from "~/shared/ui/footer/FooterLogo";
 import { FaInstagram, FaMapPin } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 function Footer() {
+  const isMobile = useMediaQuery({ query: "(max-width: 639px)" });
+
   const footerStyle = {
     backgroundColor: "#E0E0E0",
   };
@@ -11,16 +14,17 @@ function Footer() {
   return (
     <footer>
       <div className="" style={footerStyle}>
-        <div className="flex justify-center gap-5 py-8">
+        <div className="flex justify-center gap-5 py-8 sm:py-4 sm:px-8">
           <FooterInfo />
-          <Divider />
-          <FooterSiteMap />
+          <Divider className="sm:hidden" />
+          <FooterSiteMap className="sm:hidden" />
         </div>
       </div>
       {/* Copyright notice */}
-      <div className="w-full bg-black-25 flex justify-center gap-2 py-2">
+      <div className="w-full bg-black-25 flex justify-center gap-2 py-2 sm:flex-col sm:text-center">
         <p className="text-black">Copyright © 2022 Notesbox. All rights reserved</p>
-        <Divider />
+        <Divider className="sm:hidden" />
+        
         <a href="https://github.com/Matias-Rossi/notesbox" className="sans text-black font-bold hover:underline">About this website</a> {/* TODO Add hyperlink to repository readme */}
       </div>
     </footer>
@@ -50,17 +54,17 @@ function FooterInfo() {
   );
 }
 
-function FooterSiteMap() {
+function FooterSiteMap({className}) {
   const scrollToTop = () => {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
   
   return(  
-    <div className="flex flex-col gap-2">
+    <div className={"flex flex-col gap-2 " + className}>
       <FooterNavLink to="/" text="Home">Home</FooterNavLink>
       <FooterNavLink to="/catalog" text="Full catalog"/>
       <FooterNavLink to="/about" text="About us"/>
-      <FooterNavLink to="/contact" text="Contact"/>
+      <FooterNavLink to="/contact-us" text="Contact"/>
       <FooterNavLink to="/profile" text="Profile"/>
       <FooterNavLink to="/terms-and-conditions" text="Terms & Conditions"/>
       <a className='text-black sans hover:underline hover:cursor-pointer' onClick={scrollToTop}>Go back to top</a>
@@ -80,8 +84,8 @@ function FooterNavLink({to, text}) {
   )
 }
 
-function Divider() {
+function Divider({className}) {
   return (
-    <div className="w-px self-stretch" style={{ backgroundColor: "#5A5A5A" }} />
+    <div className={"w-px self-stretch " + className} style={{ backgroundColor: "#5A5A5A" }} />
   );
 }

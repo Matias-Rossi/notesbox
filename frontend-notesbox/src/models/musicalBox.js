@@ -31,7 +31,7 @@ export default class MusicalBox {
     static listFromSpecialCollection(specialCollection) {
         console.log("bbb")
         console.log(specialCollection)
-        if(specialCollection["name"] == "Loading..." || specialCollection == undefined || isEmpty(specialCollection))
+        if(specialCollection == undefined || specialCollection["name"] == "Loading..."  || isEmpty(specialCollection))
             return [];
         // console.log(specialCollection.len);
         // if(specialCollection.len == undefined) 

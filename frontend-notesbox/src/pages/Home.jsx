@@ -56,16 +56,18 @@ function Home() {
 
 
     return (
-        <main>
-            <div className="flex gap-20 my-12 mx-96">
+        <main className="lg:px-4">
+            <div className="flex flex-row gap-20 my-12 mx-96 
+                            xl:mx-11 sm:flex-col sm:items-center sm:gap-8 sm:my-8
+            ">
                 <img
                     className="w-48 h-48"
                     src={musical_box}
                     alt="Musical box handrawing"
                 />
                 <div className="flex flex-col flex-grow max-w-md justify-center gap-4">
-                    <h1>More than sound</h1>
-                    <p className="text-justify">
+                    <h1 className="sm:text-center">More than sound</h1>
+                    <p className="text-justify sm:text-center">
                         Music is an essential part of our lives. Through it we
                         express emotions, share, and bring important moments
                         back to life. Through musical boxes, you can{" "}
@@ -80,7 +82,7 @@ function Home() {
                 categories={specialCollections}
             />
             <MusicalBoxGrid className="my-6" boxes={melodies} />
-            <div className="flex justify-end my-12 w-1/2">
+            <div className="flex justify-end my-12 w-1/2 sm:justify-center sm:w-full">
                 <SecondaryButton
                     text="See the full catalog"
                     trailingIcon={<FaArrowRight />}
