@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import Category from "~/models/category";
 
 function CategoryPicker({ showChooseText, categories, onChange }) {
@@ -6,6 +6,11 @@ function CategoryPicker({ showChooseText, categories, onChange }) {
   const categoryCount = categories.length;
   console.log("category count: " + categoryCount)
   console.log(categories);
+
+  useEffect(() => {
+    setCategory(categories[0].id);
+  }, [categories])
+
 
   return (
     <div className="flex gap-4 sans text-black justify-around items-center text-lg">
@@ -16,7 +21,7 @@ function CategoryPicker({ showChooseText, categories, onChange }) {
             <CategoryButton
               category={c}
               onClick={() => {
-                setCategory(i+1)
+                setCategory(i + 1)
                 onChange(i)
               }}
               selectedCategory={category}

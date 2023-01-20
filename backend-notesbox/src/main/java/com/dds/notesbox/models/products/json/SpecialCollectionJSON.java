@@ -17,7 +17,7 @@ public class SpecialCollectionJSON {
   private String name;
 
   @Getter
-  private List<ProductJSON> products = new ArrayList<ProductJSON>();
+  private List<MelodyJSON> products = new ArrayList<MelodyJSON>();
 
   public SpecialCollectionJSON(SpecialCollection sp) {
     this.id = sp.getId();
@@ -27,7 +27,7 @@ public class SpecialCollectionJSON {
 
     while(iterator.hasNext()) {
       ProductSpecialCollection psc = iterator.next();
-      products.add(new ProductJSON(psc.getProduct()));
+      products.add(new MelodyJSON(psc.getProduct()));
     }
 
   }

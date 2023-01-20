@@ -73,7 +73,19 @@ public class SampleDataController {
     Melody titanic = new Melody("Titanic", "", 29, movies);
     Melody miEnfermedad = new Melody("Mi Enfermedad", "", 29, other);
 
-    List<Melody> melodies = new ArrayList<>(Arrays.asList(jingleBells, lastChristmas, muchachos, arrancarmelo, titanic, miEnfermedad));
+    Melody theScientist = new Melody("The Scientist", "", 29, other);
+    Melody amEnde = new Melody("Am Ende", "", 24, sports);
+    Melody dangerZone = new Melody("Danger Zone", "", 29, movies);
+    Melody takeMyBreathAway = new Melody("Take My Breath Away", "", 29, movies);
+    Melody holdMyHand = new Melody("Hold My Hand", "", 29, movies);
+    Melody frostyTheSnowman = new Melody("Frosty the Snowman", "", 24, festive);
+    Melody christmasWaltz = new Melody("The Christmas Waltz", "", 24, festive);
+    Melody firstNoel = new Melody("The First Noël", "", 24, festive);
+    Melody oChristmasTree = new Melody("O Christmas Tree", "", 24, festive);
+
+    List<Melody> melodies = new ArrayList<>(Arrays.asList(jingleBells, lastChristmas, muchachos, arrancarmelo, 
+    titanic, miEnfermedad, theScientist, amEnde, dangerZone, takeMyBreathAway, holdMyHand, frostyTheSnowman,
+    christmasWaltz, firstNoel, oChristmasTree));
 
     melodies.forEach(m -> melodyRepository.persist(m));
     categories.forEach(c -> categoryRepository.update(c));
@@ -91,17 +103,21 @@ public class SampleDataController {
 
     seasonalPicks.addProduct(jingleBells);
     seasonalPicks.addProduct(lastChristmas);
+    seasonalPicks.addProduct(frostyTheSnowman);
+    seasonalPicks.addProduct(christmasWaltz);
+    seasonalPicks.addProduct(firstNoel);
+    seasonalPicks.addProduct(oChristmasTree);
 
-    trending.addProduct(miEnfermedad);
+    trending.addProduct(muchachos);
     trending.addProduct(jingleBells);
     trending.addProduct(lastChristmas);
-    trending.addProduct(muchachos);
+    trending.addProduct(oChristmasTree);
+    trending.addProduct(holdMyHand);
     trending.addProduct(arrancarmelo);
-    trending.addProduct(titanic);
     newest.addProduct(miEnfermedad);
-    newest.addProduct(titanic);
-    newest.addProduct(arrancarmelo);
-    newest.addProduct(muchachos);
+    newest.addProduct(theScientist);
+    newest.addProduct(amEnde);
+    newest.addProduct(dangerZone);
     newest.addProduct(lastChristmas);
     newest.addProduct(jingleBells);
     

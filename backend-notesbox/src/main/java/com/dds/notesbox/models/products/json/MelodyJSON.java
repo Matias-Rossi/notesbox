@@ -9,7 +9,7 @@ import com.dds.notesbox.models.products.ProductSpecialCollection;
 
 import lombok.Getter;
 
-public class ProductJSON {
+public class MelodyJSON {
   @Getter
   private Long id;
 
@@ -29,7 +29,7 @@ public class ProductJSON {
   private List<String> specialCollectionNames = new ArrayList<String>();
 
 
-  public ProductJSON(Product product) {
+  public MelodyJSON(Product product) {
     this.id = product.getId();
     this.name = product.getName();
     this.price = product.getPrice();

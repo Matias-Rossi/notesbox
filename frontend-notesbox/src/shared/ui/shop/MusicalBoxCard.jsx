@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function MusicalBoxCard({ box, className }) {
   return (
     <div className={"flex flex-col black-shadow border-2 border-black rounded-lg relative w-56 " + className }>
-      <div className="px-[18px] pt-2 pb-6">
+      <div className="px-[18px] pt-2 pb-6 flex flex-col justify-between h-full">
         <Link>
           {/* TODO: Add hyperlink */}
           <h5>{box.displayName}</h5>
