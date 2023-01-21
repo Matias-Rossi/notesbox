@@ -7,6 +7,7 @@ import Sidebar from "~/shared/ui/header/Sidebar.jsx";
 import Footer from "~/shared/ui/footer/Footer.jsx";
 import About from "~/pages/About.jsx";
 import Login from "~/pages/Login.jsx";
+import Signup from "~/pages/Signup.jsx";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -24,6 +25,7 @@ function App() {
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
       <Footer />
     </div>

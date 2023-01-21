@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dds.notesbox.dao.Dao;
 import com.dds.notesbox.models.users.User;
 
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
@@ -40,5 +42,25 @@ public class UserRepository implements Dao<User>{
   public void delete(Long id) {
     User user = em.find(User.class, id);
     em.remove(user);
+  }
+
+  public User getUserByCredentials(User user) {
+    String query = "FROM User WHERE email = :email";
+    List<User> users = em.createQuery(query, User.class).setParameter("email", user.getEmail()).getResultList();
+
+    if (users.isEmpty()) {
+      System.out.println("User not found");
+      return null;
+    }
+
+    User fetchedUser = users.get(0);
+    String hashedPassword = fetchedUser.getHashedPassword();
+
+    Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+    boolean isPasswordValid = argon2.verify(hashedPassword, user.getHashedPassword().toCharArray());
+
+    return isPasswordValid ? fetchedUser : null;
+
+
   }
 }

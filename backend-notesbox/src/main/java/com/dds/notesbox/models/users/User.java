@@ -27,7 +27,7 @@ public class User extends PersistentEntity {
   @Column(nullable = false) @Getter
   private String name;
 
-  @Column(name = "hashed_password", nullable = false) @Getter
+  @Column(name = "hashed_password", nullable = false) @Getter @Setter
   private String hashedPassword;
 
   @Column(nullable = false) @Getter

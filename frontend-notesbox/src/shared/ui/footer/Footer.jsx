@@ -7,7 +7,8 @@ import { useLocation } from "react-router-dom";
 
 function Footer() {
   const isMobile = useMediaQuery({ query: "(max-width: 639px)" });
-  const shouldHide = useLocation().pathname === "/login";
+  const location = useLocation().pathname
+  const shouldHide = location === "/login" || location === "/signup" ;
 
 
   const footerStyle = {

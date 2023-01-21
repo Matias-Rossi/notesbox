@@ -6,9 +6,37 @@ import PrimaryButton from "~/shared/ui/input/PrimaryButton";
 import { Link } from 'react-router-dom';
 
 function Login() {
+    const login = async () => {
+        console.log("");
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const usuario = {
+            email: email,
+            hashedPassword: password //Which isn't hashed
+        };
+
+        const request = await fetch("api/login", {
+            method: "POST",
+            headers: {
+                'Accept': "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user)
+        });
+
+        const response = await request.text();
+        if (response != 'FAIL') {
+            localStorage.token = response;
+            localStorage.email = usuario.email;
+            window.location.href = '';
+        } else {
+            alert("Las credenciales no son válidas.");
+        }
+    }
+
     return (
         <div className='bg-primary h-full w-full flex flex-col justify-center items-center'>
-            <div className="bg-white flex flex-col py-9 px-12 rounded-lg items-center gap-4">
+            <form className="bg-white flex flex-col py-9 px-12 rounded-lg items-center gap-4">
                 <div className="w-2/3">
                     <Logo />
                 </div>
@@ -18,11 +46,10 @@ function Login() {
                     <Checkbox label="Remember me" name="remember" />
                 </div>
                 <div className="flex flex-col gap-6 w-full">
-                    <PrimaryButton text="Sign in" className="w-full" />
+                    <PrimaryButton text="Sign in" className="w-full" onClick={login} />
                     <OtherOptions />
                 </div>
-            </div>
-            {/* label, placeholder, type, name, id */}
+            </form>
         </div>
     )
 }

@@ -68,7 +68,7 @@ public class SampleDataController {
     /* Melodies */
     Melody jingleBells = new Melody("Jingle Bells", "", 24, 19, festive);
     Melody lastChristmas = new Melody("Last Christmas", "", 24, festive);
-    Melody muchachos = new Melody("Mucahchos", "", 29, sports);
+    Melody muchachos = new Melody("Muchachos", "", 29, sports);
     Melody arrancarmelo = new Melody("Arrancarmelo", "", 29, sports);
     Melody titanic = new Melody("Titanic", "", 29, movies);
     Melody miEnfermedad = new Melody("Mi Enfermedad", "", 29, other);
