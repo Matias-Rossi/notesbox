@@ -5,6 +5,53 @@ import PrimaryButton from "~/shared/ui/input/PrimaryButton";
 import { Link } from 'react-router-dom';
 
 function Signup() {
+    /* Add validations */
+    const signup = async () => {
+        // User data
+        const password = document.getElementById('password').value;
+        const repeatPassword = document.getElementById('repeatPassword').value;
+        if (password !== repeatPassword) {
+            alert("Passwords do not match.");
+            return;
+        }
+        const email = document.getElementById('email').value;
+        const fullName = document.getElementById('name').value;
+
+        // Address
+        const street = document.getElementById('street').value;
+        const streetNumber = document.getElementById('streetNumber').value;
+        const city = document.getElementById('city').value;
+        const state = document.getElementById('state').value;
+        const country = document.getElementById('country').value;
+        const floor = document.getElementById('floor').value;
+        const apartment = document.getElementById('apartment').value;
+
+        /* TODO: Create wrapper in front and backend */
+
+        const user = {
+            email: email,
+            hashedPassword: password //Which isn't hashed
+        };
+
+        const request = await fetch("api/signup", {
+            method: "POST",
+            headers: {
+                'Accept': "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user)
+        });
+
+        const response = await request.text();
+        if (response != 'FAIL') {
+            localStorage.token = response;
+            localStorage.email = usuario.email;
+            window.location.href = '';
+        } else {
+            alert("Las credenciales no son válidas.");
+        }
+    }
+
     return (
         <div className='bg-primary h-full w-full flex flex-col justify-center items-center'>
             <form className="bg-white flex flex-col py-9 px-12 rounded-lg items-center gap-4">
@@ -25,7 +72,7 @@ function Signup() {
                 </div>
                 <div className="grid grid-cols-2 gap-x-6 gap-y-3 w-fit">
                     <Textfield label="Street address*" placeholder="e.g. Baker street" type="text" name="street" width="w-64" />
-                    <Textfield label="Street number*" placeholder="e.g. 221" type="text" name="streetNum,ber" width="w-64" />
+                    <Textfield label="Street number*" placeholder="e.g. 221" type="text" name="streetNumber" width="w-64" />
                     <Textfield label="City*" placeholder="e.g. London" type="text" name="city" width="w-64" />
                     <Textfield label="Province/State*" placeholder="e.g. 221" type="text" name="state" width="w-64" />
                     <Textfield label="Country*" placeholder="e.g. United Kingdom" type="text" name="country" width="w-64" />
