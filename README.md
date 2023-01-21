@@ -12,7 +12,7 @@ Well, having 0 knowledge in UI design, and very limited in front- and back desig
 
 For now, it isn't finished, so I haven't deployed its backend and database _yet_. I'm planning on fully completing this project soon ©.
 
-You can take a look [here](https://notesbox.netlify.app/), but I left no sample data nor loading screens _yet ©_.
+You can take a look [here](https://notesbox.netlify.app/), but I left no sample data nor loading animations _yet ©_.
 
 ## What technologies did you use?
 
