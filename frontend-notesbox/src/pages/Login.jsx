@@ -32,9 +32,9 @@ export default Login
 function OtherOptions() {
     return (
         <div className="flex w-full justify-center items-center text-black-75 gap-4">
-            <Link to="/signup" className='sans text-sm font-bold'>Sign up</Link>
+            <Link to="/signup" className='sans text-sm font-bold hover:underline'>Sign up</Link>
             <Divider />
-            <Link to="/forgot" className='sans text-sm'>Forgot password?</Link>
+            <Link to="/forgot" className='sans text-sm hover:underline'>Forgot password?</Link>
         </div>
     );
 }

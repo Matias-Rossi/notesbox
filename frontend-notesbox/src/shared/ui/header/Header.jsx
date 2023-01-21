@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SmallLogo from "~/shared/ui/SmallLogo";
 import { useMediaQuery } from "react-responsive";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaUserCircle } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
 
@@ -39,9 +39,10 @@ function Header({toggleSidebar}) {
           {
             navButtons.map((nav, i) => <HeaderNavButton text={nav.text} to={nav.to} key={i}/>)
           }
+          {/* TODO: Add login and logged in alternative */}
+          <HeaderNavButton icon={<FaUserCircle className="text-black-75 text-2xl"/>} text="Log in" to="/login" />
         </ul>}
         
-        {/* TODO: Add login and logged in alternative */}
       
       </div>
     </header>
@@ -51,11 +52,11 @@ function Header({toggleSidebar}) {
 export default Header;
 
 
-function HeaderNavButton({text, to}) {
+function HeaderNavButton({text, to, icon}) {
   return (
     <Link to={to} className="sans text-black h-full center hover:underline ease-in-out">
-      <div className="px-3 py-2">
-        {text}
+      <div className="px-3 py-2 flex justify-start items-center gap-2">
+        {icon}{text}
       </div>
     </Link>
   )
