@@ -3,17 +3,20 @@ import FooterLogo from "~/shared/ui/footer/FooterLogo";
 import { FaInstagram, FaMapPin } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import { useLocation } from "react-router-dom";
 
 function Footer() {
   const isMobile = useMediaQuery({ query: "(max-width: 639px)" });
+  const shouldHide = useLocation().pathname === "/login";
+
 
   const footerStyle = {
     backgroundColor: "#E0E0E0",
   };
 
   return (
-    <footer>
-      <div className="" style={footerStyle}>
+    <footer className={`${shouldHide? "hidden" : ""}`}>
+      <div style={footerStyle}>
         <div className="flex justify-center gap-5 py-8 sm:py-4 sm:px-8">
           <FooterInfo />
           <Divider className="sm:hidden" />

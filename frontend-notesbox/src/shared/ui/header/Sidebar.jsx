@@ -26,11 +26,11 @@ function Sidebar({ isOpen, toggle }) {
                     <Logo />
                 </div>
                 {/* NAVEGACION */}
-                <SidebarButton to="/">Home</SidebarButton>
-                <SidebarButton to="/catalog">Full catalog</SidebarButton>
-                <SidebarButton to="/about">About us</SidebarButton>
-                <SidebarButton to="/contact-us">Contact</SidebarButton>
-                <SidebarButton to="/terms-and-conditions">Terms & Conditions</SidebarButton>
+                <SidebarButton toggle={toggle} to="/">Home</SidebarButton>
+                <SidebarButton toggle={toggle} to="/catalog">Full catalog</SidebarButton>
+                <SidebarButton toggle={toggle} to="/about">About us</SidebarButton>
+                <SidebarButton toggle={toggle} to="/contact-us">Contact</SidebarButton>
+                <SidebarButton toggle={toggle} to="/terms-and-conditions">Terms & Conditions</SidebarButton>
                 <div className="my-5">
 
                     <PrimaryButton
@@ -46,11 +46,12 @@ function Sidebar({ isOpen, toggle }) {
     );
 }
 
-function SidebarButton({ to, children, ...props }) {
+function SidebarButton({ to, children, toggle, ...props }) {
     return (
         <Link
             to={to}
             className="text-black sans text-xl flex items-center justify-center ease-in-out duration-200 cursor-pointer hover:ease-in-out hover:duration-200 hover:text-green-500 mt-5"
+            onClick={toggle}
         >
             {children}
         </Link>

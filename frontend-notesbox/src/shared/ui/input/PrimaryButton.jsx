@@ -10,7 +10,7 @@ function PrimaryButton({ text = "", trailingIcon, onClick, className }, props) {
             onClick={onClick}
         >
             <div className="px-[12px] py-[6px] flex justify-between items-center gap-x-2">
-                <p className="text-white">{text}</p>
+                <p className="text-white text-center w-full">{text}</p>
                 {trailingIcon}
             </div>
         </button>

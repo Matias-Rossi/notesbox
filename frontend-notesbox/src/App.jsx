@@ -6,6 +6,7 @@ import Header from "~/shared/ui/header/Header.jsx";
 import Sidebar from "~/shared/ui/header/Sidebar.jsx";
 import Footer from "~/shared/ui/footer/Footer.jsx";
 import About from "~/pages/About.jsx";
+import Login from "~/pages/Login.jsx";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
     </div>
