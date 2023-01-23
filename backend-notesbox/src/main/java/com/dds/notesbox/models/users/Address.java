@@ -22,7 +22,7 @@ public class Address extends PersistentEntity {
   @OneToOne(mappedBy = "shippingAddress", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}) @Setter @Getter
   Customer customer;
 
-  @OneToMany(mappedBy = "shippingAddress")
+  @OneToMany(mappedBy = "shippingAddress") @Setter
   List<Order> orders;
 
   @Column @Getter

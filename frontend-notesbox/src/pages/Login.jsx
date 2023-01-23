@@ -3,6 +3,7 @@ import Logo from "~/shared/ui/BigLogo";
 import Textfield from "~/shared/ui/input/Textfield";
 import Checkbox from "~/shared/ui/input/Checkbox";
 import PrimaryButton from "~/shared/ui/input/PrimaryButton";
+import { config } from "~/shared/data/config";
 import { Link } from 'react-router-dom';
 
 function Login() {
@@ -15,7 +16,7 @@ function Login() {
             hashedPassword: password //Which isn't hashed
         };
 
-        const request = await fetch("api/login", {
+        const request = await fetch(config.backend_url + "/api/login", {
             method: "POST",
             headers: {
                 'Accept': "application/json",

@@ -16,26 +16,26 @@ import lombok.Getter;
 public class Customer extends User {
 
     @Getter
-    @OneToOne(cascade = CascadeType.ALL )
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE} )
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address shippingAddress;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "customer") @Getter
     private List<Order> orders = new ArrayList<Order>();
 
-    public Customer(String name, String nonHashedPassword, String email, Address shippingAddress, List<Order> orders) {
-        super(name, nonHashedPassword, email);
+    public Customer(String name, String hashedPassword, String email, Address shippingAddress, List<Order> orders) {
+        super(name, hashedPassword, email);
         setShippingAddress(shippingAddress);
         this.orders = orders;
     }
 
-    public Customer(String name, String nonHashedPassword, String email, Address shippingAddress) {
-        super(name, nonHashedPassword, email);
+    public Customer(String name, String hashedPassword, String email, Address shippingAddress) {
+        super(name, hashedPassword, email);
         setShippingAddress(shippingAddress);
     }
 
     public void setShippingAddress(Address shippingAddress) {
-        System.out.println("Shipping address assigned");
+        this.shippingAddress = shippingAddress;
         shippingAddress.setCustomer(this);
     }
 

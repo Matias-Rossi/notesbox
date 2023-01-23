@@ -34,13 +34,9 @@ public class User extends PersistentEntity {
   private String email;
 
   
-  public User(String name, String nonHashedPassword, String email) {
+  public User(String name, String hashedPassword, String email) {
     this.name = name;
-    try {
-      this.hashedPassword = Hasher.hashPassword(nonHashedPassword);
-    } catch (NoSuchAlgorithmException nsa) {
-      System.out.println(nsa);
-    }
+    this.hashedPassword = hashedPassword;
     this.email = email;
   }
   

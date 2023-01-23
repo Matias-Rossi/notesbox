@@ -2,11 +2,14 @@ import React from 'react';
 import Textfield from "~/shared/ui/input/Textfield";
 import Checkbox from "~/shared/ui/input/Checkbox";
 import PrimaryButton from "~/shared/ui/input/PrimaryButton";
+import { config } from "~/shared/data/config";
 import { Link } from 'react-router-dom';
 
 function Signup() {
     /* Add validations */
-    const signup = async () => {
+    const signup = async (e) => {
+        e.preventDefault();
+        console.log("Registrando");
         // User data
         const password = document.getElementById('password').value;
         const repeatPassword = document.getElementById('repeatPassword').value;
@@ -26,35 +29,51 @@ function Signup() {
         const floor = document.getElementById('floor').value;
         const apartment = document.getElementById('apartment').value;
 
-        /* TODO: Create wrapper in front and backend */
-
-        const user = {
-            email: email,
-            hashedPassword: password //Which isn't hashed
+        const address = {
+            street: street,
+            number: streetNumber,
+            city: city,
+            province: state,
+            country: country,
+            floor: floor,
+            apartment: apartment
         };
 
-        const request = await fetch("api/signup", {
+        const customer = {
+            email: email,
+            name: fullName,
+            hashedPassword: password, //Which isn't hashed
+        };
+
+        const customerAndAddress = {
+            customer: customer,
+            address: address
+        };
+
+
+        const request = await fetch(config.backend_url + "/api/signup", {
             method: "POST",
             headers: {
                 'Accept': "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(customerAndAddress)
+        }).then((response) => {
+            response.json().then(body => {
+                alert(body);
+                if (response.status < 400) {
+                    window.location.href = '/login';
+                }
+            });
         });
 
-        const response = await request.text();
-        if (response != 'FAIL') {
-            localStorage.token = response;
-            localStorage.email = usuario.email;
-            window.location.href = '';
-        } else {
-            alert("Las credenciales no son válidas.");
-        }
+
+
     }
 
     return (
         <div className='bg-primary h-full w-full flex flex-col justify-center items-center'>
-            <form className="bg-white flex flex-col py-9 px-12 rounded-lg items-center gap-4">
+            <form className="bg-white flex flex-col py-9 px-12 rounded-lg items-center gap-4" onSubmit={signup}>
                 <h2 className='cursive font-normal'> Ready to <span className="gradient-text">discover something new?</span></h2>
                 <div className="grid grid-cols-2 gap-x-6 gap-y-3 w-fit">
                     <Textfield label="Email*" placeholder="Enter your email" type="email" name="email" className="w-64" width="w-64" />
@@ -74,7 +93,7 @@ function Signup() {
                     <Textfield label="Street address*" placeholder="e.g. Baker street" type="text" name="street" width="w-64" />
                     <Textfield label="Street number*" placeholder="e.g. 221" type="text" name="streetNumber" width="w-64" />
                     <Textfield label="City*" placeholder="e.g. London" type="text" name="city" width="w-64" />
-                    <Textfield label="Province/State*" placeholder="e.g. 221" type="text" name="state" width="w-64" />
+                    <Textfield label="Province/State*" placeholder="e.g. London" type="text" name="state" width="w-64" />
                     <Textfield label="Country*" placeholder="e.g. United Kingdom" type="text" name="country" width="w-64" />
                     <div className='flex justify-between w-64'>
                         <Textfield label="Floor" placeholder="e.g. 3" type="text" name="floor" className="w-24" width="w-1/2" />
@@ -87,7 +106,7 @@ function Signup() {
                                     <Checkbox label="I accept the&nbsp;" name="acceptTermsConditions" />
                                     <Link to="/terms-and-conditions" target="_blank" rel="noopener noreferrer"
                                         className='sans underline break-normal'
-                                    >Terms & Conditions</Link>
+                                    >Terms & Conditions</Link><p className='text-black'>*</p>
                                 </div>
                                 <Checkbox label="Get offers and news via email" name="getNotified" />
                             </div>

@@ -44,6 +44,12 @@ public class UserRepository implements Dao<User>{
     em.remove(user);
   }
 
+  public boolean isEmailInUse(String email) {
+    String query = "FROM User WHERE email = :email";
+    List<User> users = em.createQuery(query, User.class).setParameter("email", email).getResultList();
+    return !users.isEmpty();
+  }
+
   public User getUserByCredentials(User user) {
     String query = "FROM User WHERE email = :email";
     List<User> users = em.createQuery(query, User.class).setParameter("email", user.getEmail()).getResultList();
