@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class NotesboxApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(NotesboxApplication.class, args);
 	}

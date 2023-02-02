@@ -37,6 +37,7 @@ public class AuthController {
 
   @PostMapping(value ="api/login")
   public String login(@RequestBody User user) {
+    //TODO: Use service
     User fetchedUser = userRepository.getUserByCredentials(user);
 
     

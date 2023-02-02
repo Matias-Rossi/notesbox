@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import SmallLogo from "~/shared/ui/SmallLogo";
+//import ProfileButton from "~/shared/ui/header/ProfileButton.jsx";
 import { useMediaQuery } from "react-responsive";
-import { FaBars, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaShoppingBag, FaTruck, FaUserCircle } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
+import ReactDropdown from 'react-dropdown';
 
 
 function Header({toggleSidebar}) {
@@ -41,7 +43,10 @@ function Header({toggleSidebar}) {
             navButtons.map((nav, i) => <HeaderNavButton text={nav.text} to={nav.to} key={i}/>)
           }
           {/* TODO: Add login and logged in alternative */}
-          <HeaderNavButton icon={<FaUserCircle className="text-black-75 text-2xl"/>} text="Log in" to="/login" />
+          {
+            false ? <LoginButton/> : <ProfileDropdown/>
+          }
+          
         </ul>}
         
       
@@ -62,5 +67,23 @@ function HeaderNavButton({text, to, icon}) {
     </Link>
   )
 }
+
+function LoginButton({}) {
+  return (<HeaderNavButton icon={<FaUserCircle className="text-black-75 text-2xl"/>} text="Log in" to="/login" />);
+}
+
+function ProfileDropdown({}) {
+  const options = [
+    <HeaderNavButton to="/profile" icon={<FaUserCircle className="text-black-75 text-2xl"/>} text="View profile"/>,
+    <HeaderNavButton to="/orders" icon={<FaTruck className="text-black-75 text-2xl"/>} text="My orders"/>,
+  ]
+
+  return (
+    <>
+      <div className="flex items-center gap-1"><FaUserCircle className="text-black-75 text-2xl"/><p>&lt;Name&gt;</p></div>
+    </>
+    );
+}
+
 
 

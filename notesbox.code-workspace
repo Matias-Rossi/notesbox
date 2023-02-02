@@ -6,5 +6,8 @@
 		{
 			"path": "backend-notesbox"
 		}
-	]
+	],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "automatic"
+	}
 }

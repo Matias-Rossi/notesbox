@@ -16,10 +16,10 @@ import jakarta.persistence.PersistenceContext;
 
 @Repository
 @Transactional
+//TODO: Replace by interface and move special functions to a dedicated service
 public class UserRepository implements Dao<User>{
   @PersistenceContext
   private EntityManager em;
-
 
   public List<User> findAll() {
     String query = "FROM User";
@@ -58,6 +58,7 @@ public class UserRepository implements Dao<User>{
       System.out.println("User not found");
       return null;
     }
+    //TODO: Do in service and using Argon2Encoder
 
     User fetchedUser = users.get(0);
     String hashedPassword = fetchedUser.getHashedPassword();

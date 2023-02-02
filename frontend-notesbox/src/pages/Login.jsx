@@ -7,11 +7,11 @@ import { config } from "~/shared/data/config";
 import { Link } from 'react-router-dom';
 
 function Login() {
-    const login = async () => {
-        console.log("");
+    const login = async event => {
+        event.preventDefault();
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        const usuario = {
+        const user = {
             email: email,
             hashedPassword: password //Which isn't hashed
         };
@@ -26,18 +26,21 @@ function Login() {
         });
 
         const response = await request.text();
+        console.log(response);
         if (response != 'FAIL') {
+            console.log("Valido");
             localStorage.token = response;
-            localStorage.email = usuario.email;
-            window.location.href = '';
+            localStorage.email = user.email;
+            window.location.href = '/';
         } else {
+            console.log("Invalido");
             alert("Las credenciales no son válidas.");
         }
     }
 
     return (
-        <div className='bg-primary h-full w-full flex flex-col justify-center items-center'>
-            <form className="bg-white flex flex-col py-9 px-12 rounded-lg items-center gap-4">
+        <div className='bg-primary w-full flex flex-col justify-center items-center h-screen'>
+            <form className="bg-white flex flex-col py-9 px-12 rounded-lg items-center gap-4 sm:px-6 sm:py-4" onSubmit={login}>
                 <div className="w-2/3">
                     <Logo />
                 </div>
@@ -47,7 +50,7 @@ function Login() {
                     <Checkbox label="Remember me" name="remember" />
                 </div>
                 <div className="flex flex-col gap-6 w-full">
-                    <PrimaryButton text="Sign in" className="w-full" onClick={login} />
+                    <PrimaryButton text="Sign in" className="w-full"/>
                     <OtherOptions />
                 </div>
             </form>

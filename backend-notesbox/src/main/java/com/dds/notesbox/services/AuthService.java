@@ -28,6 +28,7 @@ public class AuthService {
   private AddressRepository addressRepository;
 
   public String hashPassword(String nonHashedPassword) {
+    //TODO: Use Argon2Encoder
     Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
     return argon2.hash(1, 1024, 1, nonHashedPassword.toCharArray());
   }
