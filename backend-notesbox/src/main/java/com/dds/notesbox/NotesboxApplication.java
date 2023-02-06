@@ -12,14 +12,4 @@ public class NotesboxApplication {
 		SpringApplication.run(NotesboxApplication.class, args);
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-			return new WebMvcConfigurer() {
-					@Override
-					public void addCorsMappings(CorsRegistry registry) {
-							registry.addMapping("/**").allowedOrigins("*");
-					}
-			};
-	}
-
 }

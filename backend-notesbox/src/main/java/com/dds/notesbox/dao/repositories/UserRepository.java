@@ -1,6 +1,7 @@
 package com.dds.notesbox.dao.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,8 @@ import com.dds.notesbox.models.users.User;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.NonUniqueResultException;
 import jakarta.persistence.PersistenceContext;
 
 
@@ -67,7 +70,19 @@ public class UserRepository implements Dao<User>{
     boolean isPasswordValid = argon2.verify(hashedPassword, user.getHashedPassword().toCharArray());
 
     return isPasswordValid ? fetchedUser : null;
+  }
 
+  public Optional<User> getOneUserByEmail(String email) {
+    String query = "FROM User WHERE email = :email";
+    try {
+      User user = em.createQuery(query, User.class).setParameter("email", email).getSingleResult();
+      return Optional.of(user);
+    } catch (NoResultException e) {
+      System.out.println("No user with email " + email + " was found" );
+    } catch (NonUniqueResultException e) {
+      System.out.println("More than one users with email " + email + " were found" );
+    }
+    return Optional.empty();
 
   }
 }

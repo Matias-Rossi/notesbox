@@ -3,6 +3,7 @@ import Logo from "~/shared/ui/BigLogo";
 import Textfield from "~/shared/ui/input/Textfield";
 import Checkbox from "~/shared/ui/input/Checkbox";
 import PrimaryButton from "~/shared/ui/input/PrimaryButton";
+import {Buffer} from 'buffer';
 import { config } from "~/shared/data/config";
 import { Link } from 'react-router-dom';
 
@@ -13,14 +14,15 @@ function Login() {
         const password = document.getElementById('password').value;
         const user = {
             email: email,
-            hashedPassword: password //Which isn't hashed
+            password: password
         };
 
-        const request = await fetch(config.backend_url + "/api/login", {
+        const request = await fetch(config.backend_url + "/api/auth/login", {
             method: "POST",
             headers: {
                 'Accept': "application/json",
                 "Content-Type": "application/json",
+                //"Authorization": "Basic " + Buffer.from(`${email}:${password}`, 'base64')
             },
             body: JSON.stringify(user)
         });

@@ -14,23 +14,27 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 public class JWTUtils {
-  @Value("${security.jwt.secret}")
-  private static String key;
+  //TODO: Fix injection
+  //@Value("${security.jwt.secret}")
+  private static String key = "NNhp6kNnsu";
 
-  @Value("${security.jwt.issuer}")
-  private static String issuer;
+  //@Value("${security.jwt.issuer}")
+  private static String issuer = "Main";
 
-  @Value("${security.jwt.ttlMillis}")
-  private static long ttlMillis;
+  //@Value("${security.jwt.ttlMillis}")
+  private static long ttlMillis = 10800000;
 
   public static String createToken(String name, String email) {
+    System.out.println(">>>KEY>>> " + key);
+    System.out.println(">>>issuer>>> " + issuer);
+    System.out.println(">>>ttlMillis>>> " + ttlMillis);
     long expirationTime = ttlMillis * 1_000;
     Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
 
     Map<String, Object> extra = new HashMap<>();
     extra.put("name", name);
 
-    SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+    SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS512;
 
     return Jwts.builder()
     .setSubject(email)

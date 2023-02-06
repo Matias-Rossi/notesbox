@@ -20,6 +20,7 @@ import com.dds.notesbox.models.products.Melody;
 import com.dds.notesbox.models.products.SpecialCollection;
 import com.dds.notesbox.models.users.Address;
 import com.dds.notesbox.models.users.Customer;
+import com.dds.notesbox.security.Argon2Encoder;
 
 @RestController
 public class SampleDataController {
@@ -44,7 +45,8 @@ public class SampleDataController {
   @RequestMapping(value = "api/test/users/create-sample-data")
   public String createSampleUsers() {
     Address a1 = new Address("Rivadavia", "210", "Buenos Aires", "CABA", "Argentina", null, null);
-    Customer c1 = new Customer("Matias Rossi", "contraseña", "mr@mail.com", a1);
+    String password = new Argon2Encoder().encode("password");
+    Customer c1 = new Customer("Matias Rossi", password, "mr@mail.com", a1);
     addressRepository.persist(a1);
     customerRepository.persist(c1);
 

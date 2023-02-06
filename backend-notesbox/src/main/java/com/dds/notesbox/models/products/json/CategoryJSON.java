@@ -1,11 +1,7 @@
 package com.dds.notesbox.models.products.json;
 
 import com.dds.notesbox.models.products.Category;
-import com.dds.notesbox.models.products.Product;
-import com.dds.notesbox.models.products.ProductSpecialCollection;
-import com.dds.notesbox.models.products.SpecialCollection;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;
