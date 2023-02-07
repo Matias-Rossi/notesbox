@@ -2,7 +2,7 @@
 
 ## What is this?
 
-A full shop website for musical boxes, based on an exam from my University, in which the students had to desgin an object and persistence model. 
+A full shop website for musical boxes, [based on an exam from my University](https://pdfhost.io/v/9DPsinW.t_DDS_Final_Febrero_2022_Notesbox), in which the students had to desgin an object and persistence model. 
 
 ## Why?
 
