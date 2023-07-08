@@ -10,44 +10,24 @@ import java.util.List;
 @Service
 public class MelodyServiceImpl implements MelodyService {
 
-    @Autowired
-    private MelodyRepository melodyRepository;
-
     @Override
     public List<Melody> fetchAllMelodies() {
         return melodyRepository.findAll();
     }
 
-    @Override
-    public void setDiscountPrice(Long melodyId, double price) {
-        Melody melody = getMelodyFromRepository(melodyId);
 
+    public void setDiscountPrice(Melody melody, double price) {
         melody.setDiscountPrice(price);
         melody.setHasDiscountPrice(true);
-
-        saveMelodyToRepository(melody);
     }
 
-    @Override
-    public void removeDiscountPrice(Long melodyId) {
-        Melody melody = getMelodyFromRepository(melodyId);
 
+    public void removeDiscountPrice(Melody melody) {
         melody.setHasDiscountPrice(false);
-
-        saveMelodyToRepository(melody);
     }
 
-    @Override
-    public boolean hasDiscountPrice(Long melodyId) {
-        Melody melody = getMelodyFromRepository(melodyId);
-
+    public boolean hasDiscountPrice(Melody melody) {
         return melody.isHasDiscountPrice();
     }
 
-    private Melody getMelodyFromRepository(Long id) {
-        return melodyRepository.findOne(id);
-    }
-    private void saveMelodyToRepository(Melody melody) {
-        melodyRepository.persist(melody);
-    }
 }

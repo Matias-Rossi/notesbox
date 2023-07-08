@@ -3,6 +3,7 @@ package com.dds.notesbox.models.orders;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.dds.notesbox.models.PersistentEntity;
 import com.dds.notesbox.models.products.Manufacturer;
@@ -13,6 +14,7 @@ import com.dds.notesbox.models.users.Customer;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "orders")
@@ -33,7 +35,8 @@ public class Order extends PersistentEntity {
   public List<ManufacturerPart> manufacturerParts;
 
   @Enumerated(EnumType.STRING)
-  @Column(name = "status") @Getter
+  @Column(name = "status")
+  @Getter
   private OrderStatus orderStatus = OrderStatus.NEW;
 
   @OneToMany(cascade = CascadeType.ALL)
@@ -43,44 +46,27 @@ public class Order extends PersistentEntity {
   double totalPrice = 0;
 
 
-  public Order(Customer customer, Address shippingAddress, List<OrderProduct> products, List<ManufacturerPart> manufacturerParts) {
+  public Order(Customer customer, Address shippingAddress) {
     this.customer = customer;
     this.shippingAddress = shippingAddress;
-    this.products = products;
-    this.manufacturerParts = manufacturerParts;
-    this.orderStatus = OrderStatus.NEW;
   }
 
-  public Order(Customer customer, List<Product> products) {
-    this.customer = customer;
-    this.shippingAddress = customer.getShippingAddress();
-    this.manufacturerParts = new ArrayList<ManufacturerPart>();
-    this.orderStatus = OrderStatus.NEW;
-    this.changeStatusSystem(OrderStatus.MANUFACTURER_ASSIGNMENT_PENDING);
-  }
+   public void changeStatus(OrderStatus newStatus, LocalDate date, Optional<Admin> adminOptional) {
+     OrderHistory oh = new OrderHistory(
+             this, orderStatus, newStatus, date, adminOptional.orElse(null)
+     );
+      this.orderHistory.add(oh);
+      orderStatus = newStatus;
+   }
 
-  public void changeStatus(Admin admin, OrderStatus toStatus) {
-    //TODO: validate parts delivered on frontend
-    OrderHistory orderHistory = new OrderHistory(this, this.orderStatus, toStatus, LocalDate.now(), admin);
-    this.orderHistory.add(orderHistory);
-    this.orderStatus = toStatus;
-  }
-
-  public void changeStatusSystem(OrderStatus toStatus) {
-    //Status changed automatically (or by unknown admin)
-    OrderHistory orderHistory = new OrderHistory(this, this.orderStatus, toStatus, LocalDate.now());
-    this.orderHistory.add(orderHistory);
-    this.orderStatus = toStatus;
-  }
-
-  public void addManufacturerPart(String partName, Manufacturer manufacturer) {
-    ManufacturerPart mp = new ManufacturerPart(this, partName, manufacturer);
+   //TODO: method to remove?
+  public void addManufacturerPart(ManufacturerPart mp) {
     this.manufacturerParts.add(mp);
   }
 
-  public void addProduct(Product product, int quantity) {
-    OrderProduct op = new OrderProduct(this, product, product.getPrice(), quantity);
-    totalPrice += product.getPrice() * quantity;
+  public void addOrderProduct(OrderProduct op) {
+    products.add(op);
+    totalPrice += op.getPrice() * op.getQuantity();
   }
 
   public Order(){}

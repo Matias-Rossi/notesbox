@@ -7,14 +7,18 @@ import jakarta.persistence.*;
 
 import com.dds.notesbox.models.PersistentEntity;
 import com.dds.notesbox.models.orders.ManufacturerPart;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "manufacturers")
 public class Manufacturer extends PersistentEntity{
   @Column
+  @Getter @Setter
   String name;
 
   @Column
+  @Getter @Setter
   String phoneNumber;
 
   @Column

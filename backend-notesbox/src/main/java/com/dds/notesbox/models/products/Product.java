@@ -33,7 +33,7 @@ public class Product extends PersistentEntity {
   @Column
   private String description;
 
-  @Getter
+  @Getter @Setter
   @Column
   private double price;
 

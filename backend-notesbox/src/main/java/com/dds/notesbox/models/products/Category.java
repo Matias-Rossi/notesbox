@@ -17,7 +17,7 @@ public class Category extends PersistentEntity {
   
   @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "category") @Getter
   private List<Product> products = new ArrayList<Product>();
-
+  //TODO: change to set?
 
   public Category(String name, List<Product> products) {
     this.name = name;
@@ -33,8 +33,8 @@ public class Category extends PersistentEntity {
     products.add(product);
   }
 
-  public void removeProduct(Product product) {
-    products.remove(product);
+  public boolean removeProduct(Product product) {
+    return products.remove(product);
   }
 
   public Category(){}

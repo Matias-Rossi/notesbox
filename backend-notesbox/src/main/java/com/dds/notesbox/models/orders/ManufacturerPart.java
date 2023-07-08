@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "manufacturer_by_order")
@@ -37,19 +39,13 @@ public class ManufacturerPart extends PersistentEntity {
 
   @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinColumn
+  @Getter  @Setter
   private Manufacturer manufacturer;
 
-  public ManufacturerPart(Order order, String partOrdered) {
+  public ManufacturerPart(Order order, String partOrdered, LocalDate dateCreated) {
     this.order = order;
     this.partOrdered = partOrdered;
-    this.dateCreated = LocalDate.now();
-  }
-
-  public ManufacturerPart(Order order, String partOrdered, Manufacturer manufacturer) {
-    this.order = order;
-    this.partOrdered = partOrdered;
-    this.manufacturer = manufacturer;
-    this.dateCreated = LocalDate.now();
+    this.dateCreated = dateCreated;
   }
 
 

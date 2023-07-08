@@ -8,35 +8,32 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
-    public void setDiscountPrice(Long productId, double price) {
-        Product product = getProductFromRepository(productId);
+    @Override
+    public double getActualPrice(Product product) {
+        return product.isHasDiscountPrice()? product.getDiscountPrice() : product.getPrice();
+    }
 
+    @Override
+    public void setDiscountPrice(Product product, double price) {
         product.setDiscountPrice(price);
         product.setHasDiscountPrice(true);
-
-        saveProductToRepository(product);
     }
 
-    public void removeDiscountPrice(Long productId) {
-        Product product = getProductFromRepository(productId);
-
+    @Override
+    public void removeDiscountPrice(Product product) {
         product.setHasDiscountPrice(false);
-
-        saveProductToRepository(product);
     }
 
-    public boolean hasDiscountPrice(Long productId) {
-        Product product = getProductFromRepository(productId);
-
+    @Override
+    public boolean hasDiscountPrice(Product product) {
         return product.isHasDiscountPrice();
     }
 
-    private Product getProductFromRepository(Long id) {
-        return productRepository.findOne(id);
+    @Override
+    public double changeFullPrice(Product product, double newPrice) {
+        double previousPrice = product.getPrice();
+        product.setPrice(newPrice);
+        return previousPrice;
     }
-    private void saveProductToRepository(Product product) {
-        productRepository.persist(product);
-    }
+
 }
