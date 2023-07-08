@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "products")
@@ -39,10 +40,12 @@ public class Product extends PersistentEntity {
   private double price;
 
   @Getter
+  @Setter
   @Column
   private boolean hasDiscountPrice;
 
   @Getter
+  @Setter
   @Column
   private double discountPrice;
 
@@ -76,17 +79,7 @@ public class Product extends PersistentEntity {
     category.addProduct(this);
   }
 
-  public void addDiscountPrice(double price) {
-    this.discountPrice = price;
-  }
 
-  public void removeDiscountPrice() {
-    this.hasDiscountPrice = false;
-  }
-
-  public boolean hasDiscountPrice() {
-    return this.hasDiscountPrice;
-  }
 
   public void addSpecialCollection(ProductSpecialCollection psc) {
     this.specialCollections.add(psc);
