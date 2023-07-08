@@ -1,5 +1,6 @@
 package com.dds.notesbox.security;
 
+import jakarta.servlet.Filter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -36,17 +37,18 @@ public class WebSecurityConfig {
     return http.csrf().disable()
     .authorizeHttpRequests()
     //TODO: Refine anonymous endpoints
+    //.anyRequest().permitAll()
     .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
     .requestMatchers(HttpMethod.POST, "/api/auth/login**").permitAll()
-    //.and()
-    //.formLogin().loginProcessingUrl("/api/login")
+    //.requestMatchers(HttpMethod.GET, "/api/test**").permitAll()
+    //.and().formLogin().loginProcessingUrl("/api/login")
     .and()
     .httpBasic()
     .and()
     .sessionManagement()
     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
     .and()
-    //.addFilter(jwtAuthenticationFilter)
+    //.addFilter((Filter) jwtAuthenticationFilter)
     .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
     .build();
   }
