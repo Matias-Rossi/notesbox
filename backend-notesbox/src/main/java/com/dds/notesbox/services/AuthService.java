@@ -1,23 +1,8 @@
 package com.dds.notesbox.services;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Service;
 
 import com.dds.notesbox.dao.repositories.AddressRepository;
@@ -26,10 +11,6 @@ import com.dds.notesbox.dao.repositories.UserRepository;
 import com.dds.notesbox.models.orders.Order;
 import com.dds.notesbox.models.users.Address;
 import com.dds.notesbox.models.users.Customer;
-import com.dds.notesbox.models.users.User;
-import com.dds.notesbox.security.AuthCredentials;
-import com.dds.notesbox.security.JWTAuthenticationFilter;
-import com.dds.notesbox.security.UserDetailsServiceImpl;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;

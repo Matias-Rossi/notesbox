@@ -12,8 +12,6 @@ import com.dds.notesbox.dao.repositories.SpecialCollectionRepository;
 import com.dds.notesbox.models.products.SpecialCollection;
 import com.dds.notesbox.models.products.json.SpecialCollectionJSON;
 
-import jakarta.websocket.server.PathParam;
-
 @RestController
 public class SpecialCollectionController {
   @Autowired

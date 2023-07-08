@@ -1,18 +1,12 @@
 package com.dds.notesbox.models.users;
 
-import java.security.NoSuchAlgorithmException;
-import java.util.List;
-
 import com.dds.notesbox.models.PersistentEntity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;

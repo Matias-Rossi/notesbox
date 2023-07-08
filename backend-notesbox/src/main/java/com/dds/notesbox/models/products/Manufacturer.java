@@ -7,10 +7,6 @@ import jakarta.persistence.*;
 
 import com.dds.notesbox.models.PersistentEntity;
 import com.dds.notesbox.models.orders.ManufacturerPart;
-import com.dds.notesbox.models.orders.Order;
-
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Table(name = "manufacturers")

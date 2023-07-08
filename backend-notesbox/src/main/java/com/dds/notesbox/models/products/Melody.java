@@ -1,14 +1,8 @@
 package com.dds.notesbox.models.products;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
-import lombok.Getter;
 
 @Entity
 @DiscriminatorValue(value = "Melody")

@@ -2,7 +2,6 @@ package com.dds.notesbox.services;
 
 import com.dds.notesbox.dao.repositories.MelodyRepository;
 import com.dds.notesbox.models.products.Melody;
-import com.dds.notesbox.models.products.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

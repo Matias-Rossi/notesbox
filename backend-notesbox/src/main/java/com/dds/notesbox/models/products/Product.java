@@ -15,8 +15,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.dds.notesbox.models.PersistentEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
 
 import lombok.Getter;
 import lombok.Setter;

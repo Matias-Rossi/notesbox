@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import jakarta.persistence.*;
 
 import com.dds.notesbox.models.PersistentEntity;
-import com.dds.notesbox.models.users.Admin;
 import com.dds.notesbox.models.users.User;
 
 @Entity

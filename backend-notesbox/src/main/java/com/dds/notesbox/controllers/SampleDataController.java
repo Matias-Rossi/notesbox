@@ -14,7 +14,6 @@ import com.dds.notesbox.dao.repositories.CustomerRepository;
 import com.dds.notesbox.dao.repositories.SpecialCollectionRepository;
 
 import com.dds.notesbox.dao.repositories.MelodyRepository;
-import com.dds.notesbox.dao.repositories.UserRepository;
 import com.dds.notesbox.models.products.Category;
 import com.dds.notesbox.models.products.Melody;
 import com.dds.notesbox.models.products.SpecialCollection;

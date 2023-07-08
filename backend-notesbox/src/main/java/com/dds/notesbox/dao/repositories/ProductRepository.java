@@ -1,7 +1,6 @@
 package com.dds.notesbox.dao.repositories;
 
 import com.dds.notesbox.dao.Dao;
-import com.dds.notesbox.models.products.Melody;
 import com.dds.notesbox.models.products.Product;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
