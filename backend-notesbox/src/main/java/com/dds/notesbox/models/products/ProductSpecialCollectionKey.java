@@ -5,8 +5,10 @@ import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Embeddable
-public class ProductSpecialCollectionKey {
+public class ProductSpecialCollectionKey implements Serializable {
   @Column(name = "product_id") @Getter @Setter
   Long productId;
 
