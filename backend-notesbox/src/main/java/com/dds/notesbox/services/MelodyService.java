@@ -8,6 +8,8 @@ import java.util.List;
 public interface MelodyService{
     //TODO: add MIDI and indications support
 
+    public double getActualPrice(Melody melody);
+
     public void setDiscountPrice(Melody melody, double price);
 
     public void removeDiscountPrice(Melody melody);
@@ -16,5 +18,4 @@ public interface MelodyService{
 
     public double changeFullPrice(Melody melody, double newPrice);
 
-    public List<Melody> fetchAllMelodies();
 }

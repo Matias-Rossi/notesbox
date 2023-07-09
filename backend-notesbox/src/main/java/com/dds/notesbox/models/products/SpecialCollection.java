@@ -18,7 +18,8 @@ public class SpecialCollection extends PersistentEntity {
   @Column @Getter
   private String name; 
 
-  @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "specialCollection") @Getter
+  @Getter
+  @OneToMany(cascade = {CascadeType.MERGE}, mappedBy = "specialCollection")
   private List<ProductSpecialCollection> products = new ArrayList<ProductSpecialCollection>();
 
   public SpecialCollection(String name) {
