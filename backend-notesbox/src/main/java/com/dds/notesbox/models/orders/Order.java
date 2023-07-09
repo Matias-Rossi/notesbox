@@ -28,6 +28,9 @@ public class Order extends PersistentEntity {
   @JoinColumn(name = "shipping_address")
   private Address shippingAddress;
 
+  @Column
+  LocalDate creationDate = LocalDate.now();
+
   @OneToMany(cascade = CascadeType.ALL)
   private List<OrderProduct> products;
 
